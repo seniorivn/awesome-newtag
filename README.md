@@ -1,10 +1,16 @@
-# revelation.lua
+# newtag.lua
 
-Provides Mac OSX like 'Expose' view of all clients. 
+Provides Mac OSX like 'Expose' view of all clients, to choose clients for new tag with check for other tags for this combination of tags. 
 
-This is a fork from [revelation](https://github.com/bioe007/awesome-revelation)
-It is modified from the original revelation.lua for incorperating with awesome 3.5 or later. 
+This is a fork from [revelation](https://github.com/guotsuan/awesome-revelation)
+It is incorperating with awesome 3.5 or later. 
 It also have some features.  
+## Changes from the revelation
+Works like revelation, but in Expose mode(it creates only on mouse.scree by default):
+* press hintkey to choose the window
+* press "Enter" to create tag if it doesn't exist and choosed clients more then 1
+* press "Esc" to cancel
+
 ## Changes since 2014-02-19
 * Now the revlation is able to handle the special clients(float, fullscreen or maximized etc.)
 * When you select an minimized client, the revelation will un-minimized it and then focuse on it.
@@ -149,7 +155,9 @@ to change the settings, use:
 ### Original authors
     * Espen Wiborg <espenhw@grumblesmurf.org>
     * Julien Danjou <julien@danjou.info>
-
-    (c) 20013-2014 Quan Guo
-    (c) 2009-12 Perry Hargrave
-    (c) 2008 Espen Wiborg, Julien Danjou
+### Revelation authors
+    * 20013-2014 Quan Guo
+    * 2009-12 Perry Hargrave
+    * 2008 Espen Wiborg, Julien Danjou
+### NewTag authors
+    (c) 2015 Ivan Balashov <ivan.d.balashov@gmail.com>
