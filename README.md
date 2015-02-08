@@ -13,19 +13,19 @@ Works like revelation, but in Expose mode(it creates only on mouse.scree by defa
 
 ## Changes since 2014-02-19
 * Now the revlation is able to handle the special clients(float, fullscreen or maximized etc.)
-* When you select an minimized client, the revelation will un-minimized it and then focuse on it.
+* When you select an minimized client, the newtag will un-minimized it and then focuse on it.
 
 ## Changes after 2013-12-30
-* Now it is possible, in revelation.init({...}), to change the default settings of 
-  revelation module.
+* Now it is possible, in newtag.init({...}), to change the default settings of 
+  newtag module.
 
-* Function `revelation(...)` now accept the parameter as a table `{rule={...}, is_excluded=...,
+* Function `newtag(...)` now accept the parameter as a table `{rule={...}, is_excluded=...,
 curr_tag_only=...}`. 
 
-1. To add specify rules `revelation({rule={...},...})`.
-2. To exclude the clients matched by the rules instead of including `revelation({rule={...}, 
+1. To add specify rules `newtag({rule={...},...})`.
+2. To exclude the clients matched by the rules instead of including `newtag({rule={...}, 
 is_excluded=true})`.
-3. `{...,curr_tag_only=true}` make the revelation only collect the cliens from current
+3. `{...,curr_tag_only=true}` make the newtag only collect the cliens from current
   tags.
 
 ## Changes from the original revelation
@@ -58,20 +58,20 @@ is_excluded=true})`.
 
  1. Clone the repository:
 
-        git clone https://github.com/guotsuan/awesome-revelation revelation
+        git clone https://github.com/seniorivn/awesome-newtag newtag
 
  2. Include it at the top of your rc.lua file:
-    `local revelation=require("revelation")`
+    `local newtag=require("newtag")`
 
- 3. Add `revelation.init()` after `beautiful.init()`
+ 3. Add `newtag.init()` after `beautiful.init()`
 
- 3. Define a global keybinding (e. g. `ModKey + e`) for revelation in your rc.lua:
+ 3. Define a global keybinding (e. g. `ModKey + e`) for newtag in your rc.lua:
 
         globalkeys = awful.util.table.join(
         awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ), 
         awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
         awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
-    ==> awful.key({ modkey,           }, "e",      revelation),
+    ==> awful.key({ modkey,           }, "e",      newtag),
 
         awful.key({ modkey,           }, "j",
         function ()
@@ -90,16 +90,16 @@ is_excluded=true})`.
  Press the right mouse button to zoom the client or __Escape__ to abort.
 
 ### Configuration
- Revelation's configuration is done through the init() function
+ NewTag's configuration is done through the init() function
  
  There are two basic settings, shown with default values:
 
     -- The name of the tag created for the 'exposed' view
-    revelation.tag_name = 'Revelation'
+    newtag.tag_name = 'NewTag'
 
     -- A table of matcher functions (used in client filtering)
-    revelation.exact = awful.rules.match
-    revelation.any   = awful.rules.match_any
+    newtag.exact = awful.rules.match
+    newtag.any   = awful.rules.match_any
 
  The rule matching functions must conform to `awful.rules.match` prototypes.
 
@@ -108,23 +108,23 @@ is_excluded=true})`.
 
 to change the settings, use:
 
-     revelation.init({tag_name = ..., match={...})
+     newtag.init({tag_name = ..., match={...})
 
 
 ### Examples
  All clients:
 
-     awful.key({modkey}, "e", revelation)
+     awful.key({modkey}, "e", newtag)
 
  To match all urxvt terminals:
 
      awful.key({modkey}, "e", function()
-                revelation({rule={class="URxvt"}})
+                newtag({rule={class="URxvt"}})
              end)
  To match clients with class 'foo' or 'bar':
 
      awful.key({modkey}, "e", function()
-                revelation({
+                newtag({
                             rule{class={"foo", "bar"},
                             any=true}
                             })
@@ -133,13 +133,13 @@ to change the settings, use:
  To exclude the clients,  we set:
 
      awful.key({modkey}, "e", function()
-             revelation(rule={class="conky"}, is_excluded=true)
+             newtag(rule={class="conky"}, is_excluded=true)
              end)
 
  To set only collect clients from current tag
 
      awful.key({modkey}, "e", function()
-                 revelation(rule={class="conky"}, is_excluded=true, 
+                 newtag(rule={class="conky"}, is_excluded=true, 
                 curr_tag_only=true)
                  end)
 
