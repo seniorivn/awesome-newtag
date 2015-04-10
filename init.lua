@@ -39,7 +39,6 @@ local clientData = {} -- table that holds the positions and sizes of floating cl
 
 
 charorder = "htnsaoeuidjkbmpgclzvw" --"jkluiopyhnmfdsatgvcewqzx1234567890"
-charedit = "r"
 hintbox = {} -- Table of letter wiboxes with characters as the keys
 local markedclient = {}
 local count = 0
@@ -251,6 +250,12 @@ end
 	if count < 2 then
 		--count = 0
 		return false
+	elseif count == 1 then
+		for i,c in pairs(markedclient) do
+			selectfn(function() end)(c)
+			--c:raise()
+			--capi.client.focus = c
+		end
 	end
 	n = 1
 	for i,t in pairs(markedclient) do
@@ -259,15 +264,17 @@ end
 	end
 	--print(n.." "..#newtable)
 	--print(count)
-    	for i,scr in pairs(newtag.screen) do
+	for i,scr in pairs(newtag.screen) do
 		for i,t in pairs(awful.tag.gettags(scr)) do
-			print(t.name)
-			clients = t.clients(t)
-			if (#clients == #newtable) then
-				if match(newtable,clients) then
-					awful.tag.viewonly(t)
-					--count = 0
-					return false
+			--print(t.name)
+			if i > 1 then
+				clients = t.clients(t)
+				if (#clients == #newtable) then
+					if match(newtable,clients) then
+						awful.tag.viewonly(t)
+						--count = 0
+						return false
+					end
 				end
 			end
 		end
