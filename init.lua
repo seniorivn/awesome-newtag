@@ -267,12 +267,14 @@ end
     	for i,scr in pairs(newtag.screen) do
 		for i,t in pairs(awful.tag.gettags(scr)) do
 			--print(t.name)
-			clients = t.clients(t)
-			if (#clients == #newtable) then
-				if match(newtable,clients) then
-					awful.tag.viewonly(t)
-					--count = 0
-					return false
+			if i > 1 then
+				clients = t.clients(t)
+				if (#clients == #newtable) then
+					if match(newtable,clients) then
+						awful.tag.viewonly(t)
+						--count = 0
+						return false
+					end
 				end
 			end
 		end
